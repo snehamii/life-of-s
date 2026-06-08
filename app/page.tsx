@@ -24,6 +24,7 @@ type Project = {
   year: string;
   category: string;
   github: string;
+  image?: string;
 };
 
 /* ══════════════════════════════════════════════
@@ -42,6 +43,7 @@ const PROJECTS: Project[] = [
     year: "2025",
     category: "Systems Engineering",
     github: "https://github.com/snehamii/System-Monitor.git",
+    image: "/projects/system_monitor.png",
   },
   {
     id: 2,
@@ -55,6 +57,7 @@ const PROJECTS: Project[] = [
     year: "2025",
     category: "Business Intelligence",
     github: "https://github.com/snehamii/Sales-KPI-Analysis-and-Dashboard.git",
+    image: "/projects/sales_analytics.png",
   },
   {
     id: 3,
@@ -68,6 +71,7 @@ const PROJECTS: Project[] = [
     year: "2024",
     category: "AI&ML",
     github: "https://github.com/snehamii/Plant-disease-detection.git",
+    image: "/projects/plant_detection.png",
   },
   {
     id: 5,
@@ -81,6 +85,7 @@ const PROJECTS: Project[] = [
     year: "2026",
     category: "Machine Learning",
     github: "https://github.com/snehamii/Computer-Interaction-ML.git",
+    image: "/projects/computer_interaction.png",
   },
   {
     id: 4,
@@ -94,6 +99,7 @@ const PROJECTS: Project[] = [
     year: "2026",
     category: "Accessibility Tech",
     github: "https://github.com/snehamii/Nayan---An-App-for-the-blind.git",
+    image: "/projects/nayan.png",
   },
 ];
 
@@ -354,7 +360,7 @@ function Hero() {
         >
           <div style={{ height: 1, width: 48, background: "linear-gradient(90deg, transparent, #dc2626)" }} />
           <span style={{ color: "rgba(248,113,113,0.7)", fontSize: 10, fontWeight: 700, letterSpacing: "0.35em", textTransform: "uppercase" }}>
-            Portfolio 2024
+            Life of S.
           </span>
           <div style={{ height: 1, width: 48, background: "linear-gradient(270deg, transparent, #dc2626)" }} />
         </motion.div>
@@ -1093,7 +1099,7 @@ export default function Home() {
               <motion.a href="mailto:snehami1412@gmail.com" whileHover={{ scale: 1.06, boxShadow: "0 0 56px rgba(220,38,38,0.55)" }} whileTap={{ scale: 0.96 }} style={{ background: "#dc2626", color: "#fff", padding: "18px 48px", borderRadius: 999, fontSize: 12, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", boxShadow: "0 0 30px rgba(220,38,38,0.3)", textAlign: "center" }}>
                 Send Email
               </motion.a>
-              <motion.a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.96 }} style={{ border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", padding: "18px 48px", borderRadius: 999, fontSize: 12, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)", textAlign: "center" }}>
+              <motion.a href="https://www.linkedin.com/in/snehamish1705/" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.96 }} style={{ border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", padding: "18px 48px", borderRadius: 999, fontSize: 12, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)", textAlign: "center" }}>
                 LinkedIn
               </motion.a>
             </div>
