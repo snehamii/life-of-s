@@ -70,6 +70,19 @@ const PROJECTS: Project[] = [
     github: "https://github.com/snehamii/Plant-disease-detection.git",
   },
   {
+    id: 5,
+    title: "Computer Interaction",
+    subtitle: "AI Interaction System",
+    description:
+      "Developed a gesture-based computer interaction system using Python, OpenCV, ctypes, and machine learning techniques where hand movements controlled mouse interactions in real time.",
+    fromColor: "#083344",
+    glowRgb: "6,182,212",
+    tags: ["Python", "OpenCV", "ctypes", "Machine Learning"],
+    year: "2026",
+    category: "Machine Learning",
+    github: "https://github.com/snehamii/Computer-Interaction-ML.git",
+  },
+  {
     id: 4,
     title: "Nayan",
     subtitle: "AI + IoT Accessibility",
@@ -159,7 +172,7 @@ function Noise() {
 ══════════════════════════════════════════════ */
 function Navbar({ active }: { active: string }) {
   const [scrolled, setScrolled] = useState(false);
-  const links = ["home", "projects", "about", "contact"];
+  const links = ["home", "projects", "about", "certifications", "contact"];
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 48);
@@ -423,7 +436,7 @@ function Hero() {
 ══════════════════════════════════════════════ */
 function ProjectCard({ p, index }: { p: Project; index: number }) {
   const [hovered, setHovered] = useState(false);
-  const cardRef = useRef<HTMLElement>(null);
+  const cardRef = useRef<HTMLAnchorElement>(null);
   const [mouseX, setMouseX] = useState(0);
   const [mouseY, setMouseY] = useState(0);
 
@@ -440,7 +453,7 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
   const rotateX = useTransform(springY, [-0.5, 0.5], [6, -6]);
   const rotateY = useTransform(springX, [-0.5, 0.5], [-6, 6]);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const width = rect.width;
@@ -471,7 +484,10 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
   };
 
   return (
-    <motion.article
+    <motion.a
+      href={p.github}
+      target="_blank"
+      rel="noopener noreferrer"
       ref={cardRef}
       initial={{ opacity: 0, y: 56 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -481,6 +497,7 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={{
+        display: "block",
         position: "relative",
         borderRadius: 20,
         overflow: "hidden",
@@ -497,6 +514,7 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
           ? `0 0 50px rgba(${p.glowRgb},0.24), 0 24px 48px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.09)`
           : "0 4px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04)",
         transition: "box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease",
+        textDecoration: "none",
       }}
     >
       {/* Interactive Cursor Spotlight Glow */}
@@ -713,6 +731,10 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
             {p.tags.map((tag) => (
               <motion.span
                 key={tag}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
                 whileHover={{
                   scale: 1.05,
                   background: `rgba(${p.glowRgb},0.15)`,
@@ -739,13 +761,7 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
           </div>
 
           {p.github && (
-            <motion.a
-              href={p.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
+            <motion.div
               whileHover={{
                 scale: 1.05,
                 background: `rgba(${p.glowRgb},0.12)`,
@@ -788,7 +804,7 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
               </svg>
               GitHub
-            </motion.a>
+            </motion.div>
           )}
         </div>
       </div>
@@ -798,7 +814,7 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
         transition={{ duration: 0.4 }}
         style={{ position: "absolute", inset: 0, borderRadius: 20, pointerEvents: "none" }}
       />
-    </motion.article>
+    </motion.a>
   );
 }
 
@@ -855,7 +871,7 @@ export default function Home() {
   const [active, setActive] = useState("home");
 
   useEffect(() => {
-    const ids = ["home", "projects", "about", "contact"];
+    const ids = ["home", "projects", "about", "certifications", "contact"];
     const obs = new IntersectionObserver(
       (entries) => { entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); }); },
       { threshold: 0.38 }
