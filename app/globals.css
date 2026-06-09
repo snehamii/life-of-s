@@ -38,17 +38,70 @@ a {
 ::-webkit-scrollbar-thumb { background: rgba(220,38,38,0.4); border-radius: 2px; }
 
 @media (max-width: 768px) {
-  .nav-links { display: none !important; }
-  .stats-grid { grid-template-columns: repeat(2,1fr) !important; }
-  .about-grid { grid-template-columns: 1fr !important; }
-  .projects-grid { grid-template-columns: 1fr !important; }
-  .cta-group { flex-direction: column !important; align-items: stretch !important; }
-  .section-pad { padding: 80px 24px !important; }
-  .projects-section { padding: 80px 24px !important; max-width: 100% !important; }
+  .nav-container {
+    padding: 12px 16px !important;
+  }
+  .nav-links {
+    display: flex !important;
+    gap: 12px !important;
+  }
+  .nav-links a {
+    font-size: 9px !important;
+    letter-spacing: 0.1em !important;
+  }
+  .logo-text {
+    display: none !important;
+  }
+  .hire-me-btn {
+    display: none !important;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2,1fr) !important;
+    padding: 24px 16px !important;
+    margin-top: 40px !important;
+  }
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .cta-group {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .section-pad {
+    padding: 80px 24px !important;
+  }
+  .projects-section {
+    padding: 80px 24px !important;
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links {
+    gap: 8px !important;
+  }
+  .nav-links a {
+    font-size: 8.5px !important;
+    letter-spacing: 0.05em !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-card-body,
+  .cert-card-body {
+    padding: 20px !important;
+  }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .projects-grid {
     grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .about-grid {
+    gap: 40px !important;
   }
 }

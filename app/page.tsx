@@ -234,6 +234,7 @@ function Navbar({ active }: { active: string }) {
       }}
     >
       <div
+        className="nav-container"
         style={{
           maxWidth: 1280,
           margin: "0 auto",
@@ -261,6 +262,7 @@ function Navbar({ active }: { active: string }) {
             <span style={{ color: "#fff", fontWeight: 900, fontSize: 13 }}>S</span>
           </div>
           <span
+            className="logo-text"
             style={{
               color: "#fff",
               fontWeight: 900,
@@ -311,6 +313,7 @@ function Navbar({ active }: { active: string }) {
 
           <motion.a
             href="#contact"
+            className="hire-me-btn"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.96 }}
             style={{
@@ -397,7 +400,7 @@ function Hero() {
           initial={{ opacity: 0, y: 48, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1.1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          style={{ fontSize: "clamp(4.5rem, 16vw, 13rem)", fontWeight: 900, lineHeight: 0.9, letterSpacing: "-0.04em", color: "#ffffff", marginBottom: 24 }}
+          style={{ fontSize: "clamp(2.5rem, 12vw, 13rem)", fontWeight: 900, lineHeight: 0.9, letterSpacing: "-0.04em", color: "#ffffff", marginBottom: 24 }}
         >
           SNEHA
         </motion.h1>
@@ -744,6 +747,7 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
 
       {/* Body Container */}
       <div
+        className="project-card-body"
         style={{
           padding: 32,
           position: "relative",
@@ -1163,6 +1167,7 @@ export default function Home() {
 
           {/* Text Content Area */}
           <div
+            className="cert-card-body"
             style={{
               padding: 32,
               display: "flex",
