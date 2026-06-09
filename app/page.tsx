@@ -121,6 +121,33 @@ const STATS = [
 
 const ROLES = ["AI&ML Engineer", "Data Analyst", "Builder", "Researcher"];
 
+const CERTIFICATIONS = [
+  {
+    title: "AWS Certified Machine Learning Engineer",
+    image: "/certificates/AWS ML Engineer.png",
+    issuer: "Amazon Web Services",
+    glowRgb: "255,153,0",
+  },
+  {
+    title: "Microsoft Certified: Power BI Data Analyst Associate",
+    image: "/certificates/MIcrosoft PowerBI.png",
+    issuer: "Microsoft",
+    glowRgb: "0,164,239",
+  },
+  {
+    title: "AWS Certified Cloud Practitioner",
+    image: "/certificates/AWS Cloud Practioner.png",
+    issuer: "Amazon Web Services",
+    glowRgb: "255,153,0",
+  },
+  {
+    title: "Salesforce Certified Tableau Desktop Professional",
+    image: "/certificates/Salesforce tableau.png",
+    issuer: "Salesforce / Tableau",
+    glowRgb: "226,135,67",
+  },
+];
+
 /* ══════════════════════════════════════════════
    AMBIENT ORB
 ══════════════════════════════════════════════ */
@@ -1028,58 +1055,140 @@ export default function Home() {
         gap: 20,
       }}
     >
-      {[
-        "AWS Certified Machine Learning Engineer",
-        "Microsoft Certified: Power BI Data Analyst Associate",
-        "AWS Certified Cloud Practitioner",
-        "Salesforce Certified Tableau Desktop Professional",
-      ].map((cert, index) => (
-        <motion.div
-          key={cert}
+      {CERTIFICATIONS.map((cert, index) => (
+        <motion.a
+          key={cert.title}
+          href={cert.image}
+          target="_blank"
+          rel="noopener noreferrer"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: index * 0.1 }}
-          whileHover={{
-            scale: 1.02,
-            borderColor: "rgba(220,38,38,0.45)",
-            boxShadow: "0 0 40px rgba(220,38,38,0.12)",
+          whileHover="hover"
+          variants={{
+            hover: {
+              scale: 1.02,
+              borderColor: "rgba(220,38,38,0.45)",
+              boxShadow: "0 0 40px rgba(220,38,38,0.12)",
+            }
           }}
           style={{
-            padding: 32,
+            display: "flex",
+            flexDirection: "column",
             borderRadius: 24,
             background: "rgba(255,255,255,0.03)",
             border: "1px solid rgba(255,255,255,0.08)",
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
-            transition: "all 0.35s ease",
+            overflow: "hidden",
+            textDecoration: "none",
+            transition: "border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease",
           }}
         >
-          <p
+          {/* Certificate Image Container */}
+          <div
             style={{
-              color: "rgba(248,113,113,0.7)",
-              fontSize: 10,
-              fontWeight: 700,
-              letterSpacing: "0.25em",
-              textTransform: "uppercase",
-              marginBottom: 14,
+              height: 220,
+              position: "relative",
+              overflow: "hidden",
+              background: "rgba(0, 0, 0, 0.4)",
             }}
           >
-            Certified
-          </p>
+            {/* Cinematic Gradient Overlay */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background: "linear-gradient(to bottom, transparent 30%, rgba(6,6,6,0.5) 75%, rgba(6,6,6,0.95) 100%)",
+                zIndex: 2,
+              }}
+            />
 
-          <h3
+            {/* Glowing Reflection/Overlay */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background: `radial-gradient(circle at 50% 120%, rgba(${cert.glowRgb}, 0.12), transparent 70%)`,
+                zIndex: 1,
+              }}
+            />
+
+            {/* Certificate Image with subtle zoom on hover */}
+            <motion.img
+              src={cert.image}
+              alt={cert.title}
+              variants={{
+                hover: { scale: 1.05 }
+              }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "top center",
+              }}
+            />
+          </div>
+
+          {/* Text Content Area */}
+          <div
             style={{
-              color: "#fff",
-              fontSize: 22,
-              fontWeight: 700,
-              lineHeight: 1.5,
-              letterSpacing: "-0.02em",
+              padding: 32,
+              display: "flex",
+              flexDirection: "column",
+              flexGrow: 1,
+              justifyContent: "space-between",
             }}
           >
-            {cert}
-          </h3>
-        </motion.div>
+            <div>
+              <p
+                style={{
+                  color: "rgba(248,113,113,0.7)",
+                  fontSize: 10,
+                  fontWeight: 700,
+                  letterSpacing: "0.25em",
+                  textTransform: "uppercase",
+                  marginBottom: 14,
+                }}
+              >
+                {cert.issuer}
+              </p>
+
+              <h3
+                style={{
+                  color: "#fff",
+                  fontSize: 20,
+                  fontWeight: 700,
+                  lineHeight: 1.45,
+                  letterSpacing: "-0.02em",
+                }}
+              >
+                {cert.title}
+              </h3>
+            </div>
+
+            <motion.div
+              variants={{
+                hover: { color: "rgba(255,255,255,0.85)" }
+              }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 6,
+                color: "rgba(255,255,255,0.35)",
+                fontSize: 11,
+                fontWeight: 600,
+                marginTop: 20,
+                transition: "color 0.3s ease",
+              }}
+            >
+              <span>View Certificate</span>
+              <span style={{ fontSize: 14 }}>→</span>
+            </motion.div>
+          </div>
+        </motion.a>
       ))}
     </div>
   </div>
@@ -1099,7 +1208,7 @@ export default function Home() {
               <motion.a href="mailto:snehami1412@gmail.com" whileHover={{ scale: 1.06, boxShadow: "0 0 56px rgba(220,38,38,0.55)" }} whileTap={{ scale: 0.96 }} style={{ background: "#dc2626", color: "#fff", padding: "18px 48px", borderRadius: 999, fontSize: 12, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", boxShadow: "0 0 30px rgba(220,38,38,0.3)", textAlign: "center" }}>
                 Send Email
               </motion.a>
-              <motion.a href="https://www.linkedin.com/in/snehamish1705/" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.96 }} style={{ border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", padding: "18px 48px", borderRadius: 999, fontSize: 12, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)", textAlign: "center" }}>
+              <motion.a href="https://www.linkedin.com/in/sneha-mishra" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.96 }} style={{ border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", padding: "18px 48px", borderRadius: 999, fontSize: 12, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)", textAlign: "center" }}>
                 LinkedIn
               </motion.a>
             </div>
