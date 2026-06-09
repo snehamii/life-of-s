@@ -590,7 +590,7 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
           transformStyle: "preserve-3d",
         }}
       >
-        {/* Animated background */}
+        {/* Animated background & image */}
         <motion.div
           animate={{ scale: hovered ? 1.08 : 1 }}
           transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
@@ -608,13 +608,42 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
               opacity: 0.1,
               backgroundImage: `radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)`,
               backgroundSize: "16px 16px",
+              zIndex: 3,
             }}
           />
           <div
             style={{
               position: "absolute",
               inset: 0,
-              background: `radial-gradient(ellipse at 30% 40%, rgba(${p.glowRgb},0.3) 0%, transparent 70%)`,
+              background: `radial-gradient(ellipse at 30% 40%, rgba(${p.glowRgb},0.25) 0%, transparent 70%)`,
+              zIndex: 3,
+            }}
+          />
+
+          {/* Project Image with subtle zoom, blur, and opacity blend */}
+          {p.image && (
+            <img
+              src={p.image}
+              alt={p.title}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                opacity: hovered ? 0.7 : 0.4,
+                filter: hovered ? "grayscale(10%) contrast(110%)" : "grayscale(40%) contrast(100%) blur(0.5px)",
+                transition: "opacity 0.6s ease, filter 0.6s ease",
+              }}
+            />
+          )}
+
+          {/* Subtle colored overlay to blend the image */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: `linear-gradient(to bottom, rgba(${p.glowRgb}, 0.05) 0%, rgba(6,6,6,0.5) 100%)`,
+              mixBlendMode: "multiply",
+              zIndex: 2,
             }}
           />
         </motion.div>
@@ -1208,7 +1237,7 @@ export default function Home() {
               <motion.a href="mailto:snehami1412@gmail.com" whileHover={{ scale: 1.06, boxShadow: "0 0 56px rgba(220,38,38,0.55)" }} whileTap={{ scale: 0.96 }} style={{ background: "#dc2626", color: "#fff", padding: "18px 48px", borderRadius: 999, fontSize: 12, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", boxShadow: "0 0 30px rgba(220,38,38,0.3)", textAlign: "center" }}>
                 Send Email
               </motion.a>
-              <motion.a href="https://www.linkedin.com/in/sneha-mishra" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.96 }} style={{ border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", padding: "18px 48px", borderRadius: 999, fontSize: 12, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)", textAlign: "center" }}>
+              <motion.a href="https://www.linkedin.com/in/snehamish1705/" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.96 }} style={{ border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", padding: "18px 48px", borderRadius: 999, fontSize: 12, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)", textAlign: "center" }}>
                 LinkedIn
               </motion.a>
             </div>
